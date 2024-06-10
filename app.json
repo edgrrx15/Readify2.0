@@ -1,7 +1,16 @@
 {
   "expo": {
-    "name": "Readify",
-    "slug": "Readify",
-    "version": "1.0.0"
+    "name": "my-app",
+    "slug": "my-app",
+    "version": "1.0.0",
+    
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
+    }
   }
 }
