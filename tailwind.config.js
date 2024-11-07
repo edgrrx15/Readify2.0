@@ -13,6 +13,7 @@ module.exports = {
         'input' : '#fff8e3',
         'naranja': '#e8c34d',
         'nav': '#f5eeda',
+        'scroll' : '#48F56D',
       },
     },
   },
