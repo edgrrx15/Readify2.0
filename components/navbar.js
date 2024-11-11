@@ -1,41 +1,36 @@
-import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 export default function navbar(){
 
     const navigation = useNavigation();
 
     return (
 
-           <View className="flex-row justify-around items-center py-4 bg-nav">
+           <View className="flex-row justify-around items-center space-x-8 mx-4">
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <View className="flex items-center">
-                        <Ionicons name="home-outline" size={20} color="#FFA500" />
-                        <Text className="text-orange-400 text-lg">Inicio</Text>
+                    <View className="flex items-center p-3 px-5 ">
+                        <Feather name="home" size={24} color="#f2f5f3" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Search')}>
-                    <View className="flex items-center">
-                    <Feather name="search" size={20} color="#707070" />
-                        <Text className="text-color-negro text-lg">Buscar</Text>
+                    <View className="flex items-center p-3 px-5 b">
+                        <Feather name="search" size={24} color="#f2f5f3" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Favorite')}>
-                    <View className="flex items-center">
-                        <AntDesign name="hearto" size={21} color="#707070" />
-                        <Text className="text-color-negro text-lg">Favoritos</Text>
+                    <View className="flex items-center  p-3 px-5">
+                        <MaterialIcons name="bookmark-outline" size={25} color="#f2f5f3" />
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('History')}>
-                    <View className="flex items-center">
-                        <MaterialIcons name="history" size={24} color="#707070" />
-                        <Text className="text-color-negro text-lg">Historial</Text>
+                    <View className="flex items-center  p-3 px-5">
+                        <FontAwesome5 name="user" size={24} color="#f2f5f3" />
                     </View>
                 </TouchableOpacity>
             </View>

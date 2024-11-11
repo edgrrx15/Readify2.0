@@ -33,14 +33,14 @@ export default function HomeScreen() {
       }, []);
 
     return (
-        <SafeAreaView className='flex-1 pt-12 bg-neutral-100'>
+        <SafeAreaView className='flex-1 pt-12 bg-white'>
 
             <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 10 }}>
                 <Search/>               
                 <Category/>
             </ScrollView>
 
-            <View className="flex-row justify-around items-center py-4 bg-nav">
+            <View className="flex-row justify-around items-center  bg-neutral-950">
                <Navbar/>
             </View>
         </SafeAreaView>
