@@ -72,7 +72,7 @@ const Category = () => {
         <TouchableOpacity
           key={category}
           onPress={() => setSelectedCategory(category)}
-          className={`mr-4 py-2 px-4 rounded-xl border border-neutral-200 ${selectedCategory === category ? 'bg-scroll' : 'bg-white'}`}
+          className={`mr-4 py-2 px-4 rounded-lg ${selectedCategory === category ? 'bg-scroll' : 'border border-neutral-200'}`}
         >
           <Text
             style={{
@@ -103,7 +103,7 @@ const Category = () => {
               <View className="w-[172px] mb-4 pr-3 mt-5">
                 <View className="rounded-lg overflow-hidden border border-neutral-100">
                   <Image
-                    source={book.volumeInfo.imageLinks?.thumbnail ? { uri: book.volumeInfo.imageLinks.thumbnail } :  {uri: 'https://store.bookbaby.com/bookshop/OnePageBookCoverImage.jpg?BookID=BK90089173&abOnly=False'}}
+                    source={book.volumeInfo.imageLinks?.thumbnail ? { uri: book.volumeInfo.imageLinks.thumbnail } :  {uri: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fstore.bookbaby.com%2Fbook%2Fthe-last-house1&psig=AOvVaw2BSIxBUqQjGM-qSrHTQME4&ust=1731457874062000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi1mLDF1YkDFQAAAAAdAAAAABAJ'}}
                     style={{ width: '100%', height: 250, resizeMode: 'cover' }}
                     className="rounded-lg"
                   />

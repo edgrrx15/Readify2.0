@@ -46,7 +46,7 @@ const FavouriteBooks = ({ title }) => {
 
   return (
 
-<ScrollView className="p-4 bg-color-blanco">
+<ScrollView className="p-4 bg-neutral-50">
   {favourites.length > 0 ? (
     <View className="flex-row justify-between p-3 mb-2">
       <Text className="text-color-negro text-lg">{title} ({favourites.length})</Text>

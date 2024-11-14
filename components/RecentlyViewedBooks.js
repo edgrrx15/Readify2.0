@@ -33,7 +33,7 @@ const RecentlyViewedBooks = ({title}) => {
   };
 
   return (
-    <ScrollView className="p-4 bg-color-blanco">
+    <ScrollView className="p-4 bg-neutral-100">
 
       {recentlyViewed.length > 0 ? (
           <View className='flex-row items-center justify-between'>

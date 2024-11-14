@@ -9,7 +9,7 @@ const SearchButton = () => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate('Search')}>
         <View  className="flex-1 px-6 pt-6 pb-3 ">
-          <View className="bg-neutral-100 rounded-full border border-neutral-300 px-3 py-[12px] flex-row items-center">
+          <View className="bg-white rounded-full border border-neutral-200 px-3 py-[12px] flex-row items-center">
             <TextInput
               placeholder="Buscar..."
               className="flex-1 text-gray-700 placeholder-gray-400 focus:outline-none pl-4"
