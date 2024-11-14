@@ -10,7 +10,7 @@ export default function Navbar() {
   const navigation = useNavigation();
 
   return (
-    <View className="flex-row justify-around items-center space-x-8 mx-4">
+    <View className="flex-row justify-around items-center space-x-8 mx-4 bg-black">
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <View className="flex items-center p-3 px-5">
           <Feather name="home" size={24} color="#f2f5f3" />

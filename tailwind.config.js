@@ -7,15 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        'color-blanco': '#fff6d9', 
-        'color-negro': '#0B1215', 
-        'input' : '#fff8e3',
-        'naranja': '#e8c34d',
-        'nav': '#f5eeda',
-        'scroll' : '#48F56D',
+      animation: {
+        marquee: 'marquee 30s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
     },
   },
   plugins: [],
-};
+}

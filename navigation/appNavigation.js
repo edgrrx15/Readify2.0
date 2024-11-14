@@ -7,6 +7,7 @@ import MenuScreen from '../screens/MenuScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SplashScreen from '../screens/SplashScreen';
+import IaScreen from '../screens/IaScreen';
 import { useEffect, useState } from 'react';
 
 const Stack = createNativeStackNavigator();
@@ -17,7 +18,7 @@ export default function AppNavigation() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -34,6 +35,7 @@ export default function AppNavigation() {
       <Stack.Screen name="Menu" component={MenuScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Favorite" component={FavoriteScreen} options={{ headerShown: false }} />
       <Stack.Screen name="History" component={HistoryScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="IaScreen" component={IaScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

@@ -41,7 +41,8 @@
     "react-native-skeleton-content": "^1.0.28",
     "react-native-skeleton-loading": "^1.0.9",
     "react-native-snap-carousel": "^3.9.1",
-    "react-native-webview": "^13.10.3"
+    "react-native-webview": "^13.10.3",
+    "@react-native-masked-view/masked-view": "0.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

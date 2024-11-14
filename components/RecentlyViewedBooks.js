@@ -51,15 +51,15 @@ const RecentlyViewedBooks = ({title}) => {
             <View className="w-1/2 mb-4 px-2">
               <View className="rounded-lg overflow-hidden">
                 <Image
-                   source={book.volumeInfo && book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? { uri: book.volumeInfo.imageLinks.thumbnail } : {uri: 'https://store.bookbaby.com/bookshop/OnePageBookCoverImage.jpg?BookID=BK90089173&abOnly=False'}}
-                  style={{ width: '100%', height: 230, resizeMode: 'cover', }}
+                      source={book.cover_i ? { uri: `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg` } : require('../assets/no-cover.jpg')}
+                      style={{ width: '100%', height: 230, resizeMode: 'cover', }}
                   className="rounded-lg"
                 />
               </View>
               <View className="mt-2">
                 <Text className="text-neutral-500 ml-1">
-                  {book.volumeInfo && book.volumeInfo.title ? 
-                    (book.volumeInfo.title.length > 24 ? book.volumeInfo.title.slice(0,24) + '...' : book.volumeInfo.title) : 
+                  {book.title ? 
+                    (book.title.length > 24 ? book.title.slice(0,24) + '...' : book.title) : 
                     "Sin título"
                   }
                 </Text>

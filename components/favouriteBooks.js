@@ -39,7 +39,7 @@ const FavouriteBooks = ({ title }) => {
       navigation.navigate('Favorite');
       setShowConfirmation(false)
     } catch (error) {
-      console.error('Error al borrar tus favoritos:', error);
+      Alert('Error al borrar tus favoritos:', error);
     }
   }
   
@@ -58,8 +58,7 @@ const FavouriteBooks = ({ title }) => {
 
   <Modal visible={showConfirmation} animationType="fade" transparent >
     <View className="flex-1 justify-center items-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-      <View className="bg-color-blanco p-6 rounded-xl items-center border border-gray-700">
-        <Ionicons name="alert" size={72} color="#0B1215" />
+      <View className="bg-neutral-50 p-6 rounded-xl items-center border border-gray-700">
         <Text className="text-color-negro text-2xl text-center font-bold mt-5 mb-5">
           ¿Estás seguro que quieres borrar tus {favourites.length} libros favoritos?
         </Text>   
@@ -83,14 +82,14 @@ const FavouriteBooks = ({ title }) => {
           <View className="w-1/2 mb-4 px-2">
             <View className="rounded-lg overflow-hidden ">
               <Image
-                source={book.volumeInfo.imageLinks?.thumbnail ? { uri: book.volumeInfo.imageLinks.thumbnail } : {uri: 'https://store.bookbaby.com/bookshop/OnePageBookCoverImage.jpg?BookID=BK90089173&abOnly=False'}}
-                style={{ width: '100%', height: 230, resizeMode: 'cover' }}
+                      source={book.cover_i ? { uri: `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg` } : require('../assets/no-cover.jpg')}
+                      style={{ width: '100%', height: 230, resizeMode: 'cover' }}
                 className="rounded-lg"
               />
             </View>
             <View className="mt-2">
               <Text  className="text-neutral-500 ml-1">
-                {book.volumeInfo.title.length > 24 ? book.volumeInfo.title.slice(0, 24) + '...' : book.volumeInfo.title}
+                {book.title.length > 24 ? book.title.slice(0, 24) + '...' : book.title}
               </Text>
             </View>
           </View>

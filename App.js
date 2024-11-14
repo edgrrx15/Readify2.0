@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigation from './navigation/appNavigation';
@@ -9,12 +9,17 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
-        <View style={styles.container}>
-          <AppNavigation />
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+          <View style={styles.container}>
+            <AppNavigation />
+          </View>
           <View style={styles.navbar}>
             <Navbar />
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </NavigationContainer>
     </GestureHandlerRootView>
   );

@@ -6,7 +6,7 @@ var {width, height} = Dimensions.get('window')
 export default function loading() {
   return (
     <View style={{height, width}}  className='absoulte flex-row justify-center items-center'>
-      <Progress.CircleSnailk thickness={12} size={140} color={{color: '#1a62d6'}}/>
+      <Progress.CircleSnailk thickness={12} size={140} color={{color: 'green'}}/>
     </View>
   )
 }
