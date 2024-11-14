@@ -84,11 +84,7 @@ export default function SearchScreen() {
       </View>
     </TouchableOpacity>
 
-      
 
-
-
-      
       {loading ? (
 
         

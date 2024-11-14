@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigation from './navigation/appNavigation';
 import Navbar from './components/navbar';
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function App() {
   return (

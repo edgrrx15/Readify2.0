@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Search from '../components/SearchBotton'
 import { Feather } from '@expo/vector-icons';
 import Navbar from '../components/navbar'
+import FavoriteList from '../components/FavoriteList';
 
 export default function HomeScreen() {
     const [categories, setCategories] = useState([]);
@@ -33,11 +34,12 @@ export default function HomeScreen() {
       }, []);
 
     return (
-        <SafeAreaView className='flex-1 pt-12 bg-neutral-50'>
+        <SafeAreaView className='flex-1 pt-12 bg-black'>
 
             <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 10 }}>
                 <Search/>               
                 <Category/>
+                <FavoriteList/>
             </ScrollView>
 
         </SafeAreaView>

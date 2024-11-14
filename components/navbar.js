@@ -21,11 +21,6 @@ export default function Navbar() {
           <Feather name="search" size={24} color="#f2f5f3" />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Favorite')}>
-        <View className="flex items-center p-3 px-5">
-          <MaterialIcons name="bookmark-outline" size={25} color="#f2f5f3" />
-        </View>
-      </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
         <View className="flex items-center p-3 px-5">
           <FontAwesome5 name="user" size={24} color="#f2f5f3" />

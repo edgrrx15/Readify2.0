@@ -3,7 +3,7 @@
     "name": "Booksite",
     "slug": "Booksite",
     "version": "1.0.0",
-    
+    "jsEngine": "hermes", 
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -11,6 +11,13 @@
       "permissions": [
         "RECORD_AUDIO"
       ]
+    },
+    "platforms": ["ios", "android", "web"], 
+    "orientation": "portrait", 
+    "splash": {
+      "image": "./assets/logo-app.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     }
   }
 }

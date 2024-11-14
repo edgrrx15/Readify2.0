@@ -78,7 +78,7 @@ const Category = () => {
               onError={(e) => console.error('Error loading image:', e.nativeEvent.error)} // Manejo de errores
             />
           </View>
-          <Text className="text-base text-neutral-600 mt-2 font-semibold" style={{ fontSize: Platform.OS === 'ios' ? 14 : 16 }}>
+          <Text className="text-base text-neutral-100 mt-2 font-semibold" style={{ fontSize: Platform.OS === 'ios' ? 14 : 16 }}>
             {title.length > 20 ? title.slice(0, 20) + '...' : title}
           </Text>
         </View>
