@@ -17,7 +17,6 @@ const ejemplos = [
   "Mejores libros de terror",
   "Libros sobre emprendimiento",
   "Libros para mejorar la productividad",
-  "Mejorar la productividad",
   "Libros de fantasía épica",
   "El mejor libro de cocina mexicana",
   "Libros para programar en C#",
@@ -26,7 +25,7 @@ const ejemplos = [
   "El mejor libro de comedia",
 ];
 
-const COHERE_API_KEY = 'prXkac2OGtsHyNSAKUN5xMvTWK4GFzeMmC6PMqEd';
+const COHERE_API_KEY = 'El265fvxpOdK7LttXZoNiczqh1xzdlsCLgL4a9Ax';
 
 const PromptChat = () => {
   const [query, setQuery] = useState('');
@@ -42,27 +41,36 @@ const PromptChat = () => {
       const response = await axios.post(
         'https://api.cohere.ai/v1/generate',
         {
-          model: "command-nightly", 
+          model: 'command-r-plus',
           prompt: `
-  El usuario ha pedido un libro sobre el prompt: ${prompt}.
-  Si la solicitud no es clara o es irrelevante, por favor devuelve una lista de libros relacionados con el tema, incluso si el usuario no lo menciona explícitamente. 
-  Por ejemplo, si alguien pregunta por 'Fortnite', devuelve libros sobre videojuegos o habilidades en juegos, como "Cómo mejorar en videojuegos" o "Mejores juegos de estrategia", etc.
-  Por favor, devuelve solo un libro con el título del libro. Que el libro este disponible en la API OpenLibrary. Solo coloca el titulo no otro mensaje ni subtitulo, cada vez que respondas di un nuevo libro o uno bastante popular relacionado al prompt del usuario.
-  Si se pide un libro de clasicos, puedes buscar entre 100 libros diferente bastantes populares y dar solamente 1. Cada vez que el usuario escriba el mismo prompt dar diferentes
+Eres un asistente que recomienda libros disponibles en OpenLibrary.
+
+Prompt del usuario: "${prompt}"
+
+Responde solo con el **título de un libro relevante o relacionado**, sin explicaciones, subtítulos, ni comillas. 
+Debes variar tu respuesta en cada consulta, incluso si el prompt es repetido.
+Si el tema es poco claro (como "Fortnite"), interpreta el contexto (por ejemplo, libros sobre videojuegos).
+Recuerda: solo responde con **el título exacto de un libro popular** que pueda encontrarse en OpenLibrary.
+
+Ejemplo:
+Usuario: Libros para aprender matemáticas
+Respuesta: Álgebra Baldor
 `,
-          max_tokens: 100,
-          temperature: 0.75, 
+          max_tokens: 50,
+          temperature: 0.9,
         },
         {
           headers: {
-            'Authorization': `Bearer ${COHERE_API_KEY}`,
+            Authorization: `Bearer ${COHERE_API_KEY}`,
             'Content-Type': 'application/json',
           },
         }
       );
-      if (response.data && response.data.generations) {
-        return response.data.generations[0].text;
+
+      if (response.data && response.data.generations?.[0]?.text) {
+        return response.data.generations[0].text.trim();
       }
+
       return 'No se encontraron resultados.';
     } catch (error) {
       console.error('Error al obtener datos de Cohere:', error.response?.data || error.message);
@@ -74,17 +82,18 @@ const PromptChat = () => {
     setLoading(true);
     try {
       const cohereQuery = await getCohereQuery(query);
-      setResponseText(cohereQuery); 
-      
+      setResponseText(cohereQuery);
+
       const booksArray = cohereQuery.split("\n").filter(book => book.trim() !== "");
       const searchResults = [];
-  
+
       for (let book of booksArray) {
-        const response = await axios.get(`https://openlibrary.org/search.json?q=${book.trim()}&limit=1`);
-        if (response.data.docs && response.data.docs.length > 0) {
+        const response = await axios.get(`https://openlibrary.org/search.json?q=${encodeURIComponent(book.trim())}&limit=1`);
+        if (response.data.docs?.length > 0) {
           searchResults.push(response.data.docs[0]);
         }
       }
+
       setResults(searchResults);
       setSearchCompleted(true);
     } catch (error) {
@@ -92,6 +101,7 @@ const PromptChat = () => {
     } finally {
       setLoading(false);
     }
+
     Keyboard.dismiss();
   };
 
@@ -158,15 +168,13 @@ const PromptChat = () => {
               const title = book.title;
 
               return (
-                <TouchableWithoutFeedback key={book.id} onPress={() => handleClick(book)}>
+                <TouchableWithoutFeedback key={book.key} onPress={() => handleClick(book)}>
                   <View className="w-[172px] mb-4 pr-3 mt-5" accessible={true}>
                     <View className="rounded-lg overflow-hidden border border-neutral-100">
                       <Image
                         source={imageSource}
                         style={{ width: '100%', height: 250, resizeMode: 'cover' }}
                         className="rounded-lg"
-                        accessibilityHint="Toca para ver más detalles del libro."
-                        onError={(e) => console.error('Error loading image:', e.nativeEvent.error)}
                       />
                     </View>
                     <Text

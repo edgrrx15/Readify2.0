@@ -10,9 +10,9 @@ export default function HistoryScreen() {
 
   return (
     
-    <View className='flex-1 pt-10  bg-neutral-100'>
+    <View className='flex-1 pt-10  bg-neutral-900'>
       <TouchableOpacity onPress={() => navigation.goBack()} className="rounded-xl p-1 mb-5 m-4 ">
-          <Feather name="arrow-left" size={24} color="#0B1215" />
+          <Feather name="arrow-left" size={24} color="#fff" />
       </TouchableOpacity>
       <History title='Mi historial'/>
     </View>

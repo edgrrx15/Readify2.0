@@ -33,11 +33,11 @@ const RecentlyViewedBooks = ({title}) => {
   };
 
   return (
-    <ScrollView className="p-4 bg-neutral-100">
+    <ScrollView className="p-4 bg-neutral-000">
 
       {recentlyViewed.length > 0 ? (
           <View className='flex-row items-center justify-between'>
-            <Text className="text-color-negro text-lg m-3">{title} ({recentlyViewed.length})</Text>
+            <Text className="text-neutral-100 text-lg m-3">{title} ({recentlyViewed.length})</Text>
             <TouchableOpacity onPress={ClearHistory}>
                   <Text className="text-red-400 text-lg m-3">Limpiar historial</Text>
             </TouchableOpacity>
@@ -57,7 +57,7 @@ const RecentlyViewedBooks = ({title}) => {
                 />
               </View>
               <View className="mt-2">
-                <Text className="text-neutral-500 ml-1">
+                <Text className="text-neutral-400 ml-1">
                   {book.title ? 
                     (book.title.length > 24 ? book.title.slice(0,24) + '...' : book.title) : 
                     "Sin título"
@@ -72,8 +72,8 @@ const RecentlyViewedBooks = ({title}) => {
         <View className='flex-1 justify-center items-center'>
           <View className='flex-1 justify-center items-center p-4 text-center'> 
             <Image source={{uri: 'https://cdn3d.iconscout.com/3d/premium/thumb/history-5591078-4652855.png'}} className='w-80 h-80'/> 
-            <Text className="text-color-negro text-4xl font-bold text-center">¡Oops! Parece que aún no hay libros por aquí</Text> 
-            <Text className="text-neutral-500 text-lg font-semibold text-center pt-4"> No te preocupes, el libro perfecto está esperando ser encontrado.</Text> 
+            <Text className="text-neutral-200 text-4xl font-bold text-center">¡Oops! Parece que aún no hay libros por aquí</Text> 
+            <Text className="text-neutral-400 text-lg font-semibold text-center pt-4"> No te preocupes, el libro perfecto está esperando ser encontrado.</Text> 
           </View>
         </View>
 

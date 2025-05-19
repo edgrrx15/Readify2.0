@@ -4,7 +4,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigation from './navigation/appNavigation';
 import Navbar from './components/navbar';
-import { LinearGradient } from "expo-linear-gradient";
 
 export default function App() {
   return (
@@ -16,9 +15,7 @@ export default function App() {
         >
           <View style={styles.container}>
             <AppNavigation />
-          </View>
-          <View style={styles.navbar}>
-            <Navbar />
+            <Navbar style={styles.navbar} />
           </View>
         </KeyboardAvoidingView>
       </NavigationContainer>
@@ -29,10 +26,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F8F8F8',
   },
   navbar: {
-    height: 50, 
-    justifyContent: 'flex-end',
-    backgroundColor: '#000',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    // quitar height si hay
   },
 });
