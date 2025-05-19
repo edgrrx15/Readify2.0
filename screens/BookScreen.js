@@ -35,7 +35,6 @@ const BookScreen = ({ route, navigation }) => {
     loadFavourites();
   }, [book.key]);
 
-
   const rating = 
     book.ratings_average ? 
     Number.isInteger(book.ratings_average) ? 
@@ -68,80 +67,77 @@ const BookScreen = ({ route, navigation }) => {
   const links = toggleLinks();
 
   return (
-    <ScrollView 
-      className="flex-1"
-    >
+    <ScrollView style={{ flex: 1 }}>
       <LinearGradient
-                  start={{ x: 0.1, y: 1 }}
-                  end={{ x: 0.1, y: 0 }}
-        colors={['#fff', '#cef2d6', '#Fff']}
+        start={{ x: 0, y: 0.8}}
+        end={{ x: 1, y: 0 }}
+        colors={['#000', '#26004a', '#000']}
         style={{ flex: 1, padding: 20 }}
       >
         <View className='px-2 pt-6 pb-12'>
-          <View className="flex-row  justify-between items-center mb-4 mt-8">
+          <View className="flex-row justify-between items-center mb-4 mt-8">
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Feather name="arrow-left" size={24} color="#000" />
+              <Feather name="arrow-left" size={24} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity onPress={toggleFavourite}>
-            <AntDesign name={isFavourite ? "heart" : "hearto"} size={24} color={isFavourite ? '#ff2626' : "#000"} />
+              <AntDesign name={isFavourite ? "heart" : "hearto"} size={24} color={isFavourite ? '#ff2626' : "#fff"} />
             </TouchableOpacity>
           </View>
           <View className="items-center mb-4 shadow-2x">
             <Image
               source={book.cover_i ? { uri: `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg` } : {uri: require('../assets/no-cover.jpg')}}
-              style={{ width: width * 0.8, height: height * 0.52, borderRadius: 20, borderColor: '#000', resizeMode: 'contain' }}
+              style={{ width: width * 0.8, height: height * 0.52, borderRadius: 20,  resizeMode: 'stretch' }}
               className="rounded-lg"
             />
           </View>
 
-          <Text className="text-4xl font-bold text-black text-center mb-2">
+          <Text className="text-4xl font-bold text-white text-center mb-2">
             {book.title || 'Sin título'}
           </Text>
 
-          <Text className="text-xl text-neutral-500 text-center mb-6">
+          <Text className="text-xl text-neutral-300 text-center mb-6">
             {book.author_name?.join(', ') || 'Autor desconocido'}
           </Text>
 
           <View className="flex-row justify-between items-center mb-2">
             <View className="flex items-center">
-              <Text className="text-lg text-black font-bold">
+              <Text className="text-lg text-white font-bold">
                 {rating}
               </Text>
-              <Text className="text-lg text-neutral-600">Calificación</Text>
+              <Text className="text-lg text-neutral-400">Calificación</Text>
             </View>
             <View className="flex items-center">
-              <Text className="text-lg text-black font-bold">{book.number_of_pages_median || '?'}</Text>
-              <Text className="text-lg text-neutral-600">Páginas</Text>
+              <Text className="text-lg text-white font-bold">{book.number_of_pages_median || '?'}</Text>
+              <Text className="text-lg text-neutral-400">Páginas</Text>
             </View>
             <View className="flex items-center">
-              <Text className="text-lg text-black font-bold uppercase">
+              <Text className="text-lg text-white font-bold uppercase">
                 {book.language && book.language.includes('spa') ? 'ESP' : 
-                book.language && book.language.includes('eng') ? 'ENG' : '?'}
-              </Text>
-              <Text className="text-lg text-neutral-600">Idioma(s)</Text>
+                book.language && book.language.includes('eng') ? 'ENG' : '?'}</Text>
+              <Text className="text-lg text-neutral-400">Idioma(s)</Text>
             </View>
             <View className="flex items-center">
-              <Text className="text-lg text-black font-bold">{book.first_publish_year || '?'}</Text>
-              <Text className="text-lg text-neutral-600">Año</Text>
+              <Text className="text-lg text-white font-bold">{book.first_publish_year || '?'}</Text>
+              <Text className="text-lg text-neutral-400">Año</Text>
             </View>
           </View>
 
-          <Text className="mt-6 mb-4 text-2xl font-bold">Categoria</Text>
-          <Text className="text-lg text-gray-600 mb-4">
-            {book.subject?.slice(0,2).join(', ') || 'No disponible'}
+          <Text className="mt-6 mb-4 text-2xl font-bold text-neutral-200">Categoria</Text>
+          <Text className="text-lg text-neutral-400 mb-4">
+            {book.subject?.slice(0, 2).join(', ') || 'No disponible'}
           </Text>
 
-          <Text className="mt-6 mb-4 text-2xl font-bold">Descripción</Text>
-          <Text className="text-lg text-gray-600 mb-4">
+          <Text className="mt-6 mb-4 text-2xl font-bold text-neutral-200">Descripción</Text>
+          <Text className="text-lg text-neutral-400 mb-4">
             {book.first_sentence?.[0] || 'Lo sentimos, no hay descripción disponible.'}
           </Text>
 
           {links.length > 0 && (
             <View className="mt-6">
-              <Text className="text-2xl font-bold mb-4">Obtenlo donde tú quieras</Text>
+              <Text className="text-2xl font-bold mb-4 text-neutral-200">Obtenlo donde tú quieras</Text>
               {links.map((link, index) => (
-                <TouchableOpacity  key={index} onPress={() => Linking.openURL(link.url)}>
-                  <Text className="text-lg text-blue-600">{link.name}</Text>
+                <TouchableOpacity key={index} onPress={() => Linking.openURL(link.url)}>
+                  <Text className="text-lg text-blue-400">{link.name}</Text>
                 </TouchableOpacity>
               ))}
             </View>

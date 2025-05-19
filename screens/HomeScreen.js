@@ -9,6 +9,8 @@ import Search from '../components/SearchBotton'
 import { Feather } from '@expo/vector-icons';
 import Navbar from '../components/navbar'
 import FavoriteList from '../components/FavoriteList';
+import TrendingBooks from '../components/TrendingBooks';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen() {
     const [categories, setCategories] = useState([]);
@@ -34,14 +36,23 @@ export default function HomeScreen() {
       }, []);
 
     return (
-        <SafeAreaView className='flex-1 pt-12 bg-black'>
+        <LinearGradient
+        start={{ x: 0.6, y: 0.6 }}
+        end={{ x: 1, y: -0.34 }}
+        colors={['#000', '#26004a']}
+        style={{ flex: 1 }}
+      >
+        <SafeAreaView className='flex-1 pt-12'>
+            
 
             <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 10 }}>
-                <Search/>               
+                <Search/> 
+                <TrendingBooks/>              
                 <Category/>
                 <FavoriteList/>
             </ScrollView>
 
         </SafeAreaView>
+        </LinearGradient>
     );
 }

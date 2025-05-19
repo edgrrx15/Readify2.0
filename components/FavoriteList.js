@@ -1,23 +1,26 @@
 import { View, Text, ScrollView, TouchableWithoutFeedback, Alert, Image, Platform } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect, useCallback } from 'react';  // Corregido: useCallback
+import { useFocusEffect, useNavigation } from '@react-navigation/native';  // Corregido: useFocusEffect importado de @react-navigation/native
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const FavoriteList = () => {
   const [favourites, setFavourites] = useState([]);
-  const [showConfirmation, setShowConfirmation] = useState(false);
   const navigation = useNavigation();
 
-  // Cargar favoritos desde AsyncStorage
-  useEffect(() => {
-    const loadFavourites = async () => {
-      const storedFavourites = await AsyncStorage.getItem('favourites');
-      if (storedFavourites) {
-        setFavourites(JSON.parse(storedFavourites));
-      }
-    };
-    loadFavourites();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const loadFavourites = async () => {
+        const storedFavourites = await AsyncStorage.getItem('favourites');
+        if (storedFavourites) {
+          setFavourites(JSON.parse(storedFavourites));
+        } else {
+          setFavourites([]);
+        }
+      };
+      loadFavourites();
+    }, [])
+  );
 
   const handleClick = async (item) => {
     navigation.navigate('Book', { book: item });
@@ -31,21 +34,16 @@ const FavoriteList = () => {
     }
   };
 
-  // Función para borrar todos los favoritos
-  const clearFavorites = async () => {
-    try {
-      await AsyncStorage.removeItem('favourites');
-      setFavourites([]);
-      navigation.navigate('Favorite');
-      setShowConfirmation(false);
-    } catch (error) {
-      Alert.alert('Error al borrar tus favoritos:', error.message);
-    }
-  };
-
   return (
-    <View className='px-4'>
-      <Text className='text-white'>Mis favoritos</Text>
+    <View>
+      {favourites.length > 0 && (
+        <View className='flex-row justify-between'>
+          <Text className='text-white px-4 text-xl font-bold'>Mis favoritos</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Favorite')}>
+            <Text className='text-green-300 px-4 text-lg'>Ver todos</Text>
+          </TouchableOpacity>
+        </View>
+      )}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -63,7 +61,6 @@ const FavoriteList = () => {
               <View
                 className="w-[172px] mb-4 pr-3 mt-5"
                 accessible={true}
-                accessibilityLabel={`Ver detalles del libro ${title}`}
               >
                 <View className="rounded-lg overflow-hidden border border-neutral-100">
                   <Image
@@ -75,7 +72,7 @@ const FavoriteList = () => {
                   />
                 </View>
                 <Text
-                  className="text-base text-neutral-600 mt-2 font-semibold"
+                  className="text-base text-neutral-300 mt-2 font-semibold"
                   style={{ fontSize: Platform.OS === 'ios' ? 14 : 16 }}
                 >
                   {title.length > 20 ? title.slice(0, 20) + '...' : title}
@@ -85,18 +82,6 @@ const FavoriteList = () => {
           );
         })}
       </ScrollView>
-
-      {showConfirmation && (
-        <View>
-          <Text>¿Estás seguro de que quieres borrar todos tus favoritos?</Text>
-          <TouchableWithoutFeedback onPress={clearFavorites}>
-            <Text>Borrar todos</Text>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => setShowConfirmation(false)}>
-            <Text>Cancelar</Text>
-          </TouchableWithoutFeedback>
-        </View>
-      )}
     </View>
   );
 };
