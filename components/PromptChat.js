@@ -25,7 +25,7 @@ const ejemplos = [
   "El mejor libro de comedia",
 ];
 
-const COHERE_API_KEY = 'El265fvxpOdK7LttXZoNiczqh1xzdlsCLgL4a9Ax';
+const COHERE_API_KEY = '';
 
 const PromptChat = () => {
   const [query, setQuery] = useState('');
